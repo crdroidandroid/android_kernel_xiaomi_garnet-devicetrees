@@ -230,6 +230,7 @@
 	n16-touch@0 {
 		status = "ok";
 		compatible = "goodix,gt9916S","focaltech,n16-3683g-spi";
+		goodix,touch-type = "primary";
 		reg = <0>;
 		spi-max-frequency = <12000000>;
 		interrupt-parent = <&tlmm>;

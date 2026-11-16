@@ -94,8 +94,24 @@
 
 			mi,mdss-dsi-local-hbm-off-to-normal-command = [
 				39 00 00 00 00 00 02 62 00
+				39 00 00 00 00 00 03 51 07 FF
 			];
+			mi,mdss-dsi-local-hbm-off-to-normal-command-update = <0x51 1 2>;
 			mi,mdss-dsi-local-hbm-off-to-normal-command-state = "dsi_hs_mode";
+
+			mi,mdss-dsi-local-hbm-off-to-hlpm-command = [
+				39 00 00 00 00 00 02 62 00
+				15 00 00 00 00 00 02 6D 01
+				39 00 00 00 00 00 03 51 00 FC
+			];
+			mi,mdss-dsi-local-hbm-off-to-hlpm-command-state = "dsi_hs_mode";
+
+			mi,mdss-dsi-local-hbm-off-to-llpm-command = [
+				39 00 00 00 00 00 02 62 00
+				15 00 00 00 00 00 02 6D 00
+				39 00 00 00 00 00 03 51 00 14
+			];
+			mi,mdss-dsi-local-hbm-off-to-llpm-command-state = "dsi_hs_mode";
 
 			mi,mdss-dsi-local-hbm-hlpm-white-1000nit-command = [
 				/* nolp */

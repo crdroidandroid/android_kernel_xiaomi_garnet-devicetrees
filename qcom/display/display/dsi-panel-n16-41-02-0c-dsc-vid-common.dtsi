@@ -110,7 +110,9 @@
 				mi,mdss-dsi-local-hbm-off-to-normal-command = [
 					39 00 00 00 00 00 16 A9 02 00 B5 2C 2C 03 01 00 87 00 03 00 00 00 00
 					01 00 8B 00 00 00
+					39 00 00 00 00 00 03 51 07 FF
 				];
+				mi,mdss-dsi-local-hbm-off-to-normal-command-update = <0x51 1 2>;
 				mi,mdss-dsi-local-hbm-off-to-normal-command-state = "dsi_hs_mode";
 
 				/* round corner */

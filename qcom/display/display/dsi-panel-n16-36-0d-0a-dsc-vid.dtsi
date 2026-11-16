@@ -173,10 +173,10 @@
 					39 00 00 00 0A 00 02 29 00
 				];
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
-				mi,mdss-dsi-fps-gamma-command = [
+				mi,mdss-dsi-fps-60-gamma-command = [
 					15 00 00 10 00 00 02 6C 00
 				];
-				mi,mdss-dsi-fps-gamma-command-state = "dsi_hs_mode";
+				mi,mdss-dsi-fps-60-gamma-command-state = "dsi_hs_mode";
 
 				mi,mdss-dsi-aod-exit-command = [
 					05 00 00 50 00 00 01 38
@@ -311,10 +311,10 @@
 					39 00 00 00 0A 00 02 29 00
 				];
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
-				mi,mdss-dsi-fps-gamma-command = [
+				mi,mdss-dsi-fps-120-gamma-command = [
 					15 00 00 10 00 00 02 6C 02
 				];
-				mi,mdss-dsi-fps-gamma-command-state = "dsi_hs_mode";
+				mi,mdss-dsi-fps-120-gamma-command-state = "dsi_hs_mode";
 
 				mi,mdss-dsi-aod-exit-command = [
 					05 00 00 50 00 00 01 38
@@ -448,10 +448,10 @@
 					39 00 00 00 0A 00 02 29 00
 				];
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
-				mi,mdss-dsi-fps-gamma-command = [
+				mi,mdss-dsi-fps-90-gamma-command = [
 					15 00 00 10 00 00 02 6C 01
 				];
-				mi,mdss-dsi-fps-gamma-command-state = "dsi_hs_mode";
+				mi,mdss-dsi-fps-90-gamma-command-state = "dsi_hs_mode";
 
 				mi,mdss-dsi-aod-exit-command = [
 					05 00 00 50 00 00 01 38
@@ -647,6 +647,9 @@
 
 	//use fps cmdsets
 	mi,video-fps-cmdsets-flag;
+	mi,aod-nolp-command-enabled;
+	mi,underflow-color-black;
+	mi,fps-gamma-early-active;
 	mi,local-hbm-enabled;
 	mi,local-hbm-ctrl-63-c5-reg;
 	mi,need-fod-animal-in-normal-enabled;

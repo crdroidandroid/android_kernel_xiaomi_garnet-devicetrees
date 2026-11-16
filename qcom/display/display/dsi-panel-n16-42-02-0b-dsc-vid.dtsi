@@ -306,10 +306,10 @@ qcom,mdss-dsi-display-timings-dfps-ext-cmds {
 				];
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
 
-				mi,mdss-dsi-fps-gamma-command = [
+				mi,mdss-dsi-fps-60-gamma-command = [
 					39 00 00 10 00 00 02 2F 02
 				];
-				mi,mdss-dsi-fps-gamma-command-state = "dsi_hs_mode";
+				mi,mdss-dsi-fps-60-gamma-command-state = "dsi_hs_mode";
 
 				#include "dsi-panel-n16-42-02-0b-dsc-vid-common.dtsi"
 			};
@@ -530,10 +530,10 @@ qcom,mdss-dsi-display-timings-dfps-ext-cmds {
 				];
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
 
-				mi,mdss-dsi-fps-gamma-command = [
+				mi,mdss-dsi-fps-120-gamma-command = [
 					39 00 00 10 00 00 02 2F 00
 				];
-				mi,mdss-dsi-fps-gamma-command-state = "dsi_hs_mode";
+				mi,mdss-dsi-fps-120-gamma-command-state = "dsi_hs_mode";
 
 				#include "dsi-panel-n16-42-02-0b-dsc-vid-common.dtsi"
 			};
@@ -754,10 +754,10 @@ qcom,mdss-dsi-display-timings-dfps-ext-cmds {
 				];
 				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
 
-				mi,mdss-dsi-fps-gamma-command = [
+				mi,mdss-dsi-fps-90-gamma-command = [
 					39 00 00 10 00 00 02 2F 01
 				];
-				mi,mdss-dsi-fps-gamma-command-state = "dsi_hs_mode";
+				mi,mdss-dsi-fps-90-gamma-command-state = "dsi_hs_mode";
 
 				#include "dsi-panel-n16-42-02-0b-dsc-vid-common.dtsi"
 			};
@@ -1007,6 +1007,9 @@ qcom,mdss-dsi-display-timings-dfps-ext-cmds {
 
 	//use fps cmdsets
 	mi,video-fps-cmdsets-flag;
+	mi,aod-nolp-command-enabled;
+	mi,underflow-color-black;
+	mi,fps-gamma-early-active;
 	mi,local-hbm-enabled;
 	mi,need-fod-animal-in-normal-enabled;
 	mi,local-hbm-ui-ready-delay-num-frame = <3>; /* 3 frame */

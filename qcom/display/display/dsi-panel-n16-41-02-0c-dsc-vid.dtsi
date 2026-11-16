@@ -407,4 +407,7 @@ qcom,mdss-dsi-display-timings-dfps-ext-cmds {
 	mi,local-hbm-enabled;
 	mi,need-fod-animal-in-normal-enabled;
 	mi,local-hbm-ui-ready-delay-num-frame = <3>; /* 3 frame */
+	mi,local-hbm-alpha-table = "n16-41-02-0c";
+	mi,local-hbm-alpha-hlpm-table = "n16-41-02-0c-gir-on";
+	mi,local-hbm-alpha-reg = <0xA9 12>;
 };

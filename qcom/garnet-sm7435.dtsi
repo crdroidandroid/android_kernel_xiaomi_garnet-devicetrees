@@ -381,39 +381,53 @@
 };
 
 &pmk8350_adc_tm {
-	pmk8350_xo_therm {
-		reg = <0>;
-		io-channels = <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
-		qcom,ratiometric;
-		qcom,hw-settle-time-us = <200>;
-	};
+	/delete-node/ pmk8350_xo_therm;
+	/delete-node/ pm6450_quiet_therm;
 
 	pm6450_quiet_therm {
-		reg = <1>;
+		reg = <0>;
 		io-channels = <&pmk8350_vadc PM6450_ADC7_AMUX1_GPIO2_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time-us = <200>;
 	};
 
 	pm8350b_charger_therm0 {
-		reg = <2>;
+		reg = <1>;
 		io-channels = <&pmk8350_vadc PM8350B_ADC7_GPIO4_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time-us = <200>;
 	};
 
 	pm8350b_batt_therm {
-		reg = <3>;
+		reg = <2>;
 		io-channels = <&pmk8350_vadc PM8350B_ADC7_AMUX_THM1_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time-us = <200>;
 	};
 
 	pm8350b_usb_conn_therm {
-		reg = <4>;
+		reg = <3>;
 		io-channels = <&pmk8350_vadc PM8350B_ADC7_AMUX_THM4_100K_PU>;
 		qcom,ratiometric;
 		qcom,hw-settle-time-us = <200>;
+	};
+};
+
+/* The ADC_TM peripherals monitor four channels, the fifth one is polled */
+&pmk8350 {
+	pmk8350_adc_tm_iio: adc_tm_e {
+		compatible = "qcom,spmi-adc-tm5-iio";
+		reg = <0x3400>;
+		#thermal-sensor-cells = <1>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		pmk8350_xo_therm {
+			reg = <0>;
+			io-channels = <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
+			qcom,ratiometric;
+			qcom,hw-settle-time-us = <200>;
+		};
 	};
 };
 
@@ -517,12 +531,24 @@
 		qcom,ratiometric;
 		qcom,hw-settle-time-us = <200>;
 	};
+};
 
-	flash_therm {
-		reg = <4>;
-		io-channels = <&pm6150l_vadc ADC5_GPIO2_100K_PU>;
-		qcom,ratiometric;
-		qcom,hw-settle-time-us = <200>;
+&spmi_bus {
+	qcom,pm6150l@4 {
+		pm6150l_adc_tm_iio: adc_tm@3400 {
+			compatible = "qcom,spmi-adc-tm5-iio";
+			reg = <0x3400>;
+			#thermal-sensor-cells = <1>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			flash_therm {
+				reg = <0>;
+				io-channels = <&pm6150l_vadc ADC5_GPIO2_100K_PU>;
+				qcom,ratiometric;
+				qcom,hw-settle-time-us = <200>;
+			};
+		};
 	};
 };
 
@@ -552,7 +578,7 @@
 	xo-therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-sensors = <&pmk8350_adc_tm 0>;
+		thermal-sensors = <&pmk8350_adc_tm_iio 0>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -590,7 +616,7 @@
 	quiet_therm {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-sensors = <&pmk8350_adc_tm 1>;
+		thermal-sensors = <&pmk8350_adc_tm 0>;
 		trips {
 			active-config0 {
 				temperature = <125000>;
@@ -669,7 +695,7 @@
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
-		thermal-sensors = <&pm6150l_adc_tm 4>;
+		thermal-sensors = <&pm6150l_adc_tm_iio 0>;
 		wake-capable-sensor;
 		trips {
 			active-config0 {
@@ -684,7 +710,7 @@
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
-		thermal-sensors = <&pmk8350_adc_tm 2>;
+		thermal-sensors = <&pmk8350_adc_tm 1>;
 		wake-capable-sensor;
 		trips {
 			active-config0 {
@@ -699,7 +725,7 @@
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
-		thermal-sensors = <&pmk8350_adc_tm 3>;
+		thermal-sensors = <&pmk8350_adc_tm 2>;
 		wake-capable-sensor;
 		trips {
 			active-config0 {
@@ -714,7 +740,7 @@
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
 		thermal-governor = "user_space";
-		thermal-sensors = <&pmk8350_adc_tm 4>;
+		thermal-sensors = <&pmk8350_adc_tm 3>;
 		wake-capable-sensor;
 		trips {
 			active-config0 {

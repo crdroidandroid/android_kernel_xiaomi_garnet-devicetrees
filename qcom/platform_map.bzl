@@ -551,6 +551,10 @@ _platform_map = {
         ],
         "dtbo_list": [
             # keep sorted
+            {"name": "garnet-sm7435-pm8350b-overlay.dtbo"},
+            {"name": "garnet-sde-display-qrd-overlay.dtbo"},
+            {"name": "garnet-camera-sensor-qrd.dtbo"},
+            {"name": "garnet-audio-qrd.dtbo"},
             {"name": "parrot-rumi-overlay.dtbo"},
             {"name": "parrot-atp-overlay.dtbo"},
             {"name": "parrot-idp-overlay.dtbo"},

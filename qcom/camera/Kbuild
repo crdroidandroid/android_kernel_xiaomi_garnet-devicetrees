@@ -1,4 +1,9 @@
+DTC_INCLUDE += $(srctree)/../sm7435-modules/qcom/opensource/camera-kernel
+KBUILD_DTC_INCLUDE += $(srctree)/../sm7435-modules/qcom/opensource/camera-kernel
 DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/camera-kernel
+KBUILD_DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/camera-kernel
+DTC_INCLUDE += $(srctree)/arch/arm64/boot/dts/vendor/qcom
+KBUILD_DTC_INCLUDE += $(srctree)/arch/arm64/boot/dts/vendor/qcom
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
 include $(srctree)/$(src)/config/canoe.mk

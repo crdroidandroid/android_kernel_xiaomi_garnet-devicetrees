@@ -1,4 +1,9 @@
+DTC_INCLUDE += $(srctree)/../sm7435-modules/qcom/opensource/audio-kernel/include
+KBUILD_DTC_INCLUDE += $(srctree)/../sm7435-modules/qcom/opensource/audio-kernel/include
 DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include
+KBUILD_DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include
+DTC_INCLUDE += $(srctree)/arch/arm64/boot/dts/vendor/qcom
+KBUILD_DTC_INCLUDE += $(srctree)/arch/arm64/boot/dts/vendor/qcom
 
 dtbo-$(CONFIG_ARCH_WAIPIO) += waipio-audio.dtbo \
                  waipio-audio-cdp.dtbo \
@@ -29,7 +34,8 @@ dtbo-$(CONFIG_ARCH_PARROT) += parrot-audio.dtbo \
                  parrot-audio-qrd.dtbo \
                  parrot-audio-qrd-wcn6750.dtbo \
                  parrot-audio-qrd-wcn6755.dtbo \
-                 parrot-audio-atp.dtbo
+                 parrot-audio-atp.dtbo \
+                 garnet-audio-qrd.dtbo
 
 dtbo-$(CONFIG_ARCH_RAVELIN) += ravelin-audio.dtbo \
                  ravelin-audio-idp.dtbo \

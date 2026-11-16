@@ -1,11 +1,20 @@
 # SPDX-License-Identifier: GPL-2.0
 
-ifeq ($(CONFIG_ARCH_WAIPIO), y)
 DTC_INCLUDE += \
+	$(srctree)/../sm7435-modules/qcom/opensource/audio-kernel/include \
+	$(srctree)/../sm7435-modules/qcom/opensource/camera-kernel \
+	$(srctree)/../sm7435-modules/qcom/opensource/synx-kernel \
 	$(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include \
 	$(srctree)/../sm8450-modules/qcom/opensource/camera-kernel \
 	$(srctree)/../sm8450-modules/qcom/opensource/synx-kernel
-endif
+
+KBUILD_DTC_INCLUDE += \
+	$(srctree)/../sm7435-modules/qcom/opensource/audio-kernel/include \
+	$(srctree)/../sm7435-modules/qcom/opensource/camera-kernel \
+	$(srctree)/../sm7435-modules/qcom/opensource/synx-kernel \
+	$(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include \
+	$(srctree)/../sm8450-modules/qcom/opensource/camera-kernel \
+	$(srctree)/../sm8450-modules/qcom/opensource/synx-kernel
 
 # add-overlay defines the target with following naming convention:
 # <base>-<board>-dtbs = base.dtb board.dtbo
@@ -220,6 +229,7 @@ PARROT_BASE_DTB += parrot.dtb parrotp.dtb parrot-sg.dtb parrotp-sg.dtb parrot-li
 PARROT_4GB_BASE_DTB += parrot-4gb.dtb
 
 PARROT_BOARDS += \
+	garnet-sm7435-pm8350b-overlay.dtbo \
 		 parrot-rumi-overlay.dtbo \
 		 parrot-atp-overlay.dtbo \
 		 parrot-idp-overlay.dtbo \
@@ -240,6 +250,7 @@ PARROT_BOARDS += \
 		 parrot-idp-wcn6755-nopmi-overlay.dtbo
 
 PARROT_4GB_BOARDS += \
+	garnet-sm7435-pm8350b-overlay.dtbo \
 		 parrot-idp-4gb-overlay.dtbo \
 		 parrot-idp-wcn3990-4gb-overlay.dtbo \
 		 parrot-idp-wcn3990-amoled-rcm-4gb-overlay.dtbo \
@@ -249,10 +260,17 @@ PARROT_4GB_BOARDS += \
 		 parrot-qrd-wcn6750-4gb-overlay.dtbo \
 
 
+# Garnet (and parrot in general) follows the 5.10 packaging: vendor_boot carries
+# the clean SoC base DTBs (with __symbols__, -@ is forced for QCOM targets) and
+# the board overlays are only shipped as DTBOs, applied by the bootloader from
+# dtbo.img. Do not use add-overlays here: the pre-merged <base>-<board>.dtb
+# combinations keep the base's msm-id/board-id, so merge_dtbs.py would pack
+# dozens of identical-ID chunks into vendor_boot and the board overlay would end
+# up applied twice (at build time and again by ABL).
 parrot-dtb-$(CONFIG_ARCH_PARROT) += \
-	$(call add-overlays, $(PARROT_BOARDS),$(PARROT_BASE_DTB)) \
-	$(call add-overlays, $(PARROT_4GB_BOARDS),$(PARROT_4GB_BASE_DTB))
-parrot-overlays-dtb-$(CONFIG_ARCH_PARROT) += $(PARROT_BOARDS) $(PARROT_BASE_DTB) $(PARROT_4GB_BOARDS) $(PARROT_4GB_BASE_DTB)
+	$(PARROT_BASE_DTB) $(PARROT_4GB_BASE_DTB) \
+	$(sort $(PARROT_BOARDS) $(PARROT_4GB_BOARDS))
+parrot-overlays-dtb-$(CONFIG_ARCH_PARROT) += $(sort $(PARROT_BOARDS) $(PARROT_4GB_BOARDS)) $(PARROT_BASE_DTB) $(PARROT_4GB_BASE_DTB)
 dtb-y += $(parrot-dtb-y)
 
 RAVELIN_BASE_DTB += ravelin.dtb ravelinp.dtb ravelin-sg.dtb ravelinp-sg.dtb montague.dtb montaguep.dtb montague-qmb.dtb montague-cqm-fp1.dtb montague-cqm-fp2.dtb montague-cqm-fp3.dtb montague-cqs-fp1.dtb montague-cqs-fp2.dtb montague-cqs-fp3.dtb
@@ -278,11 +296,11 @@ RAVELIN_4GB_BOARDS += \
 		 ravelin-qrd-4gb-overlay.dtbo \
 		 montague-moselle-overlay.dtbo
 
-parrot-dtb-$(CONFIG_ARCH_RAVELIN) += \
+ravelin-dtb-$(CONFIG_ARCH_RAVELIN) += \
 	$(call add-overlays, $(RAVELIN_BOARDS),$(RAVELIN_BASE_DTB)) \
 	$(call add-overlays, $(RAVELIN_4GB_BOARDS),$(RAVELIN_4GB_BASE_DTB))
-parrot-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
-dtb-y += $(parrot-dtb-y)
+ravelin-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(sort $(RAVELIN_BOARDS) $(RAVELIN_4GB_BOARDS)) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BASE_DTB)
+dtb-y += $(ravelin-dtb-y)
 
 CAPE_BASE_DTB += cape.dtb
 

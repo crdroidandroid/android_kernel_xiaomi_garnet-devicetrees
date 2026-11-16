@@ -1,4 +1,7 @@
+DTC_INCLUDE += $(srctree)/../sm7435-modules/qcom/opensource/synx-kernel
+KBUILD_DTC_INCLUDE += $(srctree)/../sm7435-modules/qcom/opensource/synx-kernel
 DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/synx-kernel
+KBUILD_DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/synx-kernel
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
 include $(srctree)/$(src)/config/pineapple.mk

@@ -1,0 +1,37 @@
+/dts-v1/;
+/plugin/;
+
+#include "xiaomi-sm7435-common.dtsi"
+
+/ {
+    compatible = "qcom,parrot-qrd", "qcom,parrot", "qcom,parrotp", "qcom,parrotp-qrd", "qcom,qrd";
+    model = "Qualcomm Technologies, Inc. Garnet based on SM7435";
+    qcom,msm-id = <537 0x10000>, <583 0x10000>, <613 0x10000>, <631 0x10000>,
+            <633 0x10000>, <634 0x10000>, <638 0x10000>,
+            <663 0x10000>, <713 0x10000>, <714 0x10000>,
+            <715 0x10000>;
+    qcom,board-id = <0x1000B 0x0>;
+    qcom,pmic-id = <0x0 0x0 0x0 0x32 0x0 0x0 0x0 0x0 0x0>;
+    qcom,pmic-id-size = <0x9>;
+    xiaomi,miboard-id = <0x11 0x0>;
+};
+
+&pm8350b_haptics {
+	status = "ok";
+};
+
+&swr_haptics {
+	status = "ok";
+};
+
+&wcd937x_codec {
+	status = "okay";
+};
+
+&wcd937x_rx_slave {
+	status = "okay";
+};
+
+&wcd937x_tx_slave {
+	status = "okay";
+};

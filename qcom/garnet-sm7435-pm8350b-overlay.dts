@@ -1,0 +1,16 @@
+/dts-v1/;
+/plugin/;
+
+#include "wlan/parrot-wcn3990.dtsi"
+#include "garnet-sm7435.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Garnet based on SM7435";
+	compatible = "qcom,parrot-qrd", "qcom,parrot", "qcom,parrotp", "qcom,parrotp-qrd", "qcom,qrd";
+	qcom,msm-id = <537 0x10000>, <583 0x10000>, <613 0x10000>, <631 0x10000>,
+			<633 0x10000>, <634 0x10000>, <638 0x10000>,
+			<663 0x10000>, <713 0x10000>, <714 0x10000>,
+			<715 0x10000>;
+	qcom,board-id = <0x1000B 0>;
+	xiaomi,miboard-id = <0x11 0>;
+};

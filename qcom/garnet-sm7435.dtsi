@@ -231,6 +231,7 @@
 		status = "ok";
 		compatible = "goodix,gt9916S","focaltech,n16-3683g-spi";
 		goodix,touch-type = "primary";
+		xiaomi,lcd-id-gpios = <&tlmm 95 0>, <&tlmm 101 0>;
 		reg = <0>;
 		spi-max-frequency = <12000000>;
 		interrupt-parent = <&tlmm>;

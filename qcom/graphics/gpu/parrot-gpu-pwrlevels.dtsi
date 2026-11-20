@@ -10,7 +10,7 @@
 			#size-cells = <0>;
 
 			qcom,speed-bin = <0>;
-			qcom,initial-pwrlevel = <7>;
+			qcom,initial-pwrlevel = <8>;
 
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
@@ -162,7 +162,7 @@
 			#size-cells = <0>;
 
 			qcom,speed-bin = <190>;
-			qcom,initial-pwrlevel = <7>;
+			qcom,initial-pwrlevel = <8>;
 
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
@@ -642,7 +642,7 @@
 			#size-cells = <0>;
 
 			qcom,speed-bin = <198>;
-			qcom,initial-pwrlevel = <7>;
+			qcom,initial-pwrlevel = <8>;
 
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
